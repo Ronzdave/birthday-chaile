@@ -567,6 +567,7 @@ html, body {
   align-items: center;
   justify-content: center;
   z-index: 50;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   animation: fadeInModal 0.3s ease;
 }
@@ -577,8 +578,8 @@ html, body {
 }
 
 @keyframes fadeInModal {
-  from { opacity: 0; backdrop-filter: blur(0px); }
-  to { opacity: 1; backdrop-filter: blur(8px); }
+  from { opacity: 0; -webkit-backdrop-filter: blur(0px); backdrop-filter: blur(0px); }
+  to { opacity: 1; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 }
 
 .music-player-content {
@@ -1057,6 +1058,7 @@ html, body {
   right: 0;
   bottom: 0;
   background: rgba(7,5,15,0.8);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -1199,6 +1201,7 @@ html, body {
   right: 0;
   bottom: 0;
   background: rgba(7,5,15,0.8);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -1331,6 +1334,7 @@ html, body {
   right: 0;
   bottom: 0;
   background: rgba(7,5,15,0.8);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -1424,6 +1428,7 @@ html, body {
   right: 0;
   bottom: 0;
   background: rgba(7,5,15,0.95);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -1860,6 +1865,7 @@ html, body {
   position: absolute;
   inset: 0;
   background: rgba(7,5,15,0.85);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   animation: fadeInBackdrop 0.3s ease;
 }
