@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Chaile 🌸</title>
+
+  <!-- ============================================================
+    FONTS
+    - "Cormorant Garamond" = luxury serif for the main title
+    - "Jost" = clean modern body / UI text
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Jost:wght@200;400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+    PHASE 1 — INTRO SCREEN
+    - Full-screen dark overlay with a "Start Journey" button
+    - The Three.js canvas (starfield) renders behind everything
+    - Clicking the button triggers Phase 2 (countdown)
+  ============================================================ -->
+  <div id="intro-screen" class="screen active">
+    <div class="intro-content">
+      <p class="intro-subtitle">A surprise for</p>
+      <h1 class="intro-title">Chaile</h1>
+      <p class="intro-hint">Press to begin</p>
+      <button id="start-btn" class="btn-glow" aria-label="Start the birthday experience">
+        <span>Enter</span>
+        <div class="btn-ripple"></div>
+      </button>
+    </div>
+    <!-- Floating hearts decoration (pure CSS) -->
+    <div class="floating-hearts" aria-hidden="true">
+      <span>♥</span><span>♥</span><span>♥</span>
+      <span>♥</span><span>♥</span><span>♥</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+    PHASE 2 — COUNTDOWN SCREEN
+    - A "3 → 2 → 1" countdown (driven by JS)
+    - Each digit fades/scales in for cinematic feel
+  ============================================================ -->
+  <div id="countdown-screen" class="screen">
+    <div id="countdown-number" class="countdown-digit" aria-live="assertive">3</div>
+  </div>
+
+  <!-- ============================================================
+    PHASE 3 — GREETING SCREEN
+    - "Happy Birthday Chaile" with gold bloom text
+    - Milk & Mocha cat SVG animation
+    - 3D rose petal canvas overlaid (petals fall on top)
+  ============================================================ -->
+  <div id="greeting-screen" class="screen">
+    <!-- Petal canvas sits behind content but above background -->
+    <canvas id="petal-canvas" aria-hidden="true"></canvas>
+
+    <div class="greeting-content">
+      <p class="greeting-pre">wishing you the most magical day</p>
+      <h2 class="greeting-title">
+        <span class="word">Happy</span>
+        <span class="word">Birthday</span>
+        <span class="word name-glow">Chaile</span>
+        <span class="word emoji-word">🎂</span>
+      </h2>
+      <p class="greeting-message">
+        May every moment sparkle, every dream bloom,<br/>
+        and every photo in this galaxy tell your story.
+      </p>
+
+      <!-- ── Beautiful Canvas-based Flower Bouquet Animation ──────────────────────────────────
+        Uses HTML5 Canvas for gorgeous, realistic flowers - roses, tulips, peonies, and daisies
+      ─────────────────────────────────────────────────────── -->
+      <div id="flower-scene" class="flower-scene" aria-label="Beautiful flower bouquet animation">
+        <canvas id="flower-canvas" aria-hidden="true"></canvas>
+      </div>
+
+      <button id="enter-galaxy-btn" class="btn-glow secondary" aria-label="Enter the photo galaxy">
+        <span>Enter the Galaxy ✦</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+    PHASE 4 — GALAXY SCREEN
+    - Three.js renders the full 3D scene here
+    - UI overlays: back button, photo caption panel
+    - Background music for galaxy experience
+  ============================================================ -->
+  <!-- Audio created dynamically in JavaScript to avoid preload issues -->
+  <div id="galaxy-screen" class="screen">
+    <!-- The main Three.js canvas fills this screen -->
+    <canvas id="galaxy-canvas" aria-label="3D photo galaxy with Chaile's photos"></canvas>
+
+    <!-- Instructions hint (fades out after 4 s) -->
+    <div id="galaxy-hint" class="galaxy-hint" aria-label="Click any photo sphere to view it">
+      <span>✦ Click a photo to view ✦</span>
+    </div>
+
+    <!-- Photo detail panel — slides in from bottom when a sphere is clicked -->
+    <div id="photo-panel" class="photo-panel" role="dialog" aria-label="Photo detail" aria-hidden="true">
+      <button id="close-panel-btn" class="close-btn" aria-label="Close photo">&times;</button>
+      <img id="photo-image" class="photo-image" src="" alt="Chaile's photo" />
+      <p id="photo-caption" class="photo-caption">Chaile ♥</p>
+    </div>
+
+    <!-- Visit counter -->
+    <div id="visit-counter" class="visit-counter">✨ Click a planet to begin!</div>
+
+    <!-- Back to greeting button -->
+    <button id="back-btn" class="back-btn" aria-label="Go back to greeting">← Back</button>
+  </div>
+
+  <!-- ============================================================
+    LIBRARIES (CDN — no build step required)
+    Load order matters:
+      1. Three.js core
+      2. Three.js examples (postprocessing, loaders, controls)
+      3. GSAP + plugins
+  ============================================================ -->
+  <!-- Three.js r158 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP 3 core + EasePack -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Beautiful Flower Bouquet Animator -->
+  <script src="flowers-animator.js"></script>
+
+  <!-- Main application script -->
+  <script src="script.js"></script>
+</body>
+</html>
